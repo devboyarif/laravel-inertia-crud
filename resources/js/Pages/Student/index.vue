@@ -6,7 +6,7 @@
            <div class="card-header">
               <div class="d-flex justify-content-between">
                    <h3>Student List</h3>
-                   <button class="btn btn-primary">Create</button>
+                    <Link href="/student/create" class="btn btn-primary">Create</Link>
               </div>
            </div>
             <div class="card-body">
@@ -40,10 +40,12 @@
 
 <script>
 import AppLayout from "../../Layout/App.vue";
+import { Link } from '@inertiajs/inertia-vue'
 
 export default {
     components: {
-        AppLayout
+        AppLayout,
+        Link
     }
 }
 </script>
