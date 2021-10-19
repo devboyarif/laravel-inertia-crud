@@ -51,10 +51,10 @@
         },
         methods:{
             createData(){
-                this.form.post('/students')
+                this.form.post('/students',{
+                    onSuccess: (page) => {alert('Student Created')},
+                })
                 this.form.reset()
-
-                console.log(this.form);
             }
         }
     }

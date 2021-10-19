@@ -57,11 +57,10 @@
         },
         methods:{
             deleteStudent(id){
-                if(confirm('Are you sure to delete?')){
-                    this.$inertia.post(`/students/${id}`, {
-                        _method: 'delete'
-                    })
-                }
+                this.$inertia.delete(`/students/${id}`, {
+                    onBefore: () => confirm('Are you sure you want to delete?'),
+                    onSuccess: (page) => {alert('Student Deleted')},
+                })
             }
         }
     }

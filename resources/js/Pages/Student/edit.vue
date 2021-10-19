@@ -59,10 +59,9 @@
         },
         methods:{
             updateData(){
-                this.form.put(`/students/${this.id}`)
-                // this.form.reset()
-
-                // console.log(this.form);
+                this.form.put(`/students/${this.id}`,{
+                    onSuccess: (page) => {alert('Student Updated')},
+                })
             }
         }
     }
