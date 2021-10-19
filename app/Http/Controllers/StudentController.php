@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class StudentController extends Controller
@@ -38,10 +39,18 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        Student::create($request->validate([
+        $student = Student::create($request->validate([
             'name' => ['required', 'max:50'],
             'email' => ['required', 'max:50', 'email'],
         ]));
+
+        $file = $request->file('avatar');
+        if ($file) {
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $url = "storage/public/student/" . $fileName;
+            Storage::putFileAs("public/student", $file, $fileName);
+            $student->update(['avater' => $url]);
+        }
 
         return back();
     }
@@ -84,6 +93,14 @@ class StudentController extends Controller
             'name' => ['required', 'max:50'],
             'email' => ['required', 'max:50', 'email'],
         ]));
+
+        $file = $request->file('avatar');
+        if ($file) {
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $url = "storage/public/student/" . $fileName;
+            Storage::putFileAs("public/student", $file, $fileName);
+            $student->update(['avater' => $url]);
+        }
 
         return redirect()->to('/students');
     }

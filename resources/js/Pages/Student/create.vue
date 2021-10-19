@@ -21,6 +21,11 @@
                                 <input v-model="form.email" type="email" class="form-control" :class="{'is-invalid':form.errors.email}" id="email">
                                 <span v-if="form.errors.email" class="invalid-feedback">{{ form.errors.email }}</span>
                             </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Avater</label>
+                                <input class="form-control" type="file" @input="form.avatar = $event.target.files[0]" :class="{'is-invalid':form.errors.avater}"/>
+                                <span v-if="form.errors.avater" class="invalid-feedback">{{ form.errors.avater }}</span>
+                            </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
@@ -46,6 +51,7 @@
                 form: this.$inertia.form({
                     name: null,
                     email: null,
+                    avatar: null,
                 })
             }
         },
