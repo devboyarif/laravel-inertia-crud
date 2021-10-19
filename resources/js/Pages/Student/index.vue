@@ -25,9 +25,8 @@
                                     <td>{{ student.name }}</td>
                                     <td>{{ student.email }}</td>
                                     <td>
-                                        <!-- <Link href="/students/${}" class="btn btn-primary">Create</Link> -->
-                                        <a href="#" class="btn btn-primary">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
+                                        <Link :href="'/students/'+student.id+'/edit'" class="btn btn-primary">Edit</Link>
+                                        <a @click="deleteStudent(student.id)" href="#" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -55,6 +54,15 @@
         components: {
             AppLayout,
             Link
+        },
+        methods:{
+            deleteStudent(id){
+                if(confirm('Are you sure to delete?')){
+                    this.$inertia.post(`/students/${id}`, {
+                        _method: 'delete'
+                    })
+                }
+            }
         }
     }
 </script>

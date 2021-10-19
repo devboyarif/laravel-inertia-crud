@@ -21,7 +21,7 @@
                                 <input v-model="form.email" type="email" class="form-control" :class="{'is-invalid':form.errors.email}" id="email">
                                 <span v-if="form.errors.email" class="invalid-feedback">{{ form.errors.email }}</span>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>

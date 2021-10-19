@@ -52,7 +52,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Student $student)
     {
         //
     }
@@ -64,9 +64,28 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function edit(Student $student)
     {
-        //
+        return Inertia::render('Student/edit', [
+            'student' => $student
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Student $student)
+    {
+        $student->update($request->validate([
+            'name' => ['required', 'max:50'],
+            'email' => ['required', 'max:50', 'email'],
+        ]));
+
+        return redirect()->to('/students');
     }
 
     /**
@@ -75,8 +94,10 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return back();
     }
 }
