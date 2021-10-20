@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <h3>Student List</h3>
-                            <Link href="/students/create" class="btn btn-primary">Create</Link>
+                            <Link :href="route('students.create')" class="btn btn-primary">Create</Link>
                         </div>
                     </div>
                     <div class="card-body">
@@ -25,7 +25,7 @@
                                     <td>{{ student.name }}</td>
                                     <td>{{ student.email }}</td>
                                     <td>
-                                        <Link :href="'/students/'+student.id+'/edit'" class="btn btn-primary">Edit</Link>
+                                        <Link :href="route('students.edit',student.id)" class="btn btn-primary">Edit</Link>
                                         <a @click="deleteStudent(student.id)" href="#" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>

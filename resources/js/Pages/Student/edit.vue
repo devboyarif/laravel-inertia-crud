@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <h3>Student Edit</h3>
-                            <Link href="/students" class="btn btn-primary">Back</Link>
+                            <Link :href="route('students.index')" class="btn btn-primary">Back</Link>
                         </div>
                     </div>
                     <div class="card-body">
@@ -65,7 +65,7 @@
         },
         methods:{
             updateData(){
-                this.form.put(`/students/${this.id}`,{
+                this.form.put(route('students.update',this.id),{
                     onSuccess: (page) => {alert('Student Updated')},
                 })
             }

@@ -10,6 +10,13 @@ import {
 
 InertiaProgress.init()
 
+// Mixins
+Vue.mixin({
+    methods: {
+        route: window.route
+    },
+})
+
 createInertiaApp({
     resolve: name => require(`./Pages/${name}`),
     setup({

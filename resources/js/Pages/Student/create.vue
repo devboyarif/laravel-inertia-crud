@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <h3>Student Create</h3>
-                            <Link href="/students" class="btn btn-primary">Back</Link>
+                            <Link :href="route('students.index')" class="btn btn-primary">Back</Link>
                         </div>
                     </div>
                     <div class="card-body">
@@ -57,7 +57,7 @@
         },
         methods:{
             createData(){
-                this.form.post('/students',{
+                this.form.post(route('students.store'),{
                     onSuccess: (page) => {alert('Student Created')},
                 })
                 this.form.reset()

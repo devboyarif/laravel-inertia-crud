@@ -102,7 +102,7 @@ class StudentController extends Controller
             $student->update(['avater' => $url]);
         }
 
-        return redirect()->to('/students');
+        return redirect()->route('student.index');
     }
 
     /**
