@@ -42,14 +42,12 @@ class StudentController extends Controller
     {
         $student = Student::create($request->except('avatar'));
 
-        $this->fileUpload($request, $student);
-
         $file = $request->file('avatar');
         if ($file) {
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             $url = "/storage/student/" . $fileName;
             Storage::putFileAs("public/student", $file, $fileName);
-            $student->update(['avater' => $url]);
+            $student->update(['avatar' => $url]);
         }
 
         return back();
@@ -96,7 +94,7 @@ class StudentController extends Controller
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             $url = "/storage/student/" . $fileName;
             Storage::putFileAs("public/student", $file, $fileName);
-            $student->update(['avater' => $url]);
+            $student->update(['avatar' => $url]);
         }
 
         return redirect()->route('students.index');

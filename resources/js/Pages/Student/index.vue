@@ -14,7 +14,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>SL</th>
-                                    <th>Avater</th>
+                                    <th>Avatar</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Action</th>
@@ -25,7 +25,7 @@
                                     <tr v-for="(student,index) in students" :key="student.id">
                                         <td>{{ index+1 }}</td>
                                         <td>
-                                            <img v-if="student.avater" height="60px" width="60px" class="rounded img-fluid" :src="student.avater" alt="">
+                                            <img v-if="student.avatar" height="60px" width="60px" class="rounded img-fluid" :src="student.avatar" alt="">
                                             <img v-else height="60px" width="60px" class="rounded img-fluid" src="images/default.png" alt="">
                                         </td>
                                         <td>{{ student.name }}</td>
