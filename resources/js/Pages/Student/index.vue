@@ -13,20 +13,32 @@
                         <table class="table ">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>#</th>
+                                    <th>SL</th>
+                                    <th>Avater</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="student in students" :key="student.id">
-                                    <td>{{ student.id }}</td>
-                                    <td>{{ student.name }}</td>
-                                    <td>{{ student.email }}</td>
-                                    <td>
-                                        <Link :href="route('students.edit',student.id)" class="btn btn-primary">Edit</Link>
-                                        <a @click="deleteStudent(student.id)" href="#" class="btn btn-danger">Delete</a>
+                                <template v-if="students && students.length">
+                                    <tr v-for="(student,index) in students" :key="student.id">
+                                        <td>{{ index+1 }}</td>
+                                        <td>
+                                            <img v-if="student.avater" height="60px" width="60px" class="rounded img-fluid" :src="student.avater" alt="">
+                                            <img v-else height="60px" width="60px" class="rounded img-fluid" src="images/default.png" alt="">
+                                        </td>
+                                        <td>{{ student.name }}</td>
+                                        <td>{{ student.email }}</td>
+                                        <td>
+                                            <Link :href="route('students.edit',student.id)" class="btn btn-primary">Edit</Link>
+                                            <a @click="deleteStudent(student.id)" href="#" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                </template>
+                                <tr v-else>
+                                    <td colspan="5" class="text-center">
+                                        <h3>No Student Found</h3>
                                     </td>
                                 </tr>
                             </tbody>

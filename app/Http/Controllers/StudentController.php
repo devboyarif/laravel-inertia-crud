@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentFormRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -37,17 +38,16 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentFormRequest $request)
     {
-        $student = Student::create($request->validate([
-            'name' => ['required', 'max:50'],
-            'email' => ['required', 'max:50', 'email'],
-        ]));
+        $student = Student::create($request->except('avatar'));
+
+        $this->fileUpload($request, $student);
 
         $file = $request->file('avatar');
         if ($file) {
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $url = "storage/public/student/" . $fileName;
+            $url = "/storage/student/" . $fileName;
             Storage::putFileAs("public/student", $file, $fileName);
             $student->update(['avater' => $url]);
         }
@@ -89,20 +89,17 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        $student->update($request->validate([
-            'name' => ['required', 'max:50'],
-            'email' => ['required', 'max:50', 'email'],
-        ]));
+        $student->update($request->except('avatar'));
 
         $file = $request->file('avatar');
         if ($file) {
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $url = "storage/public/student/" . $fileName;
+            $url = "/storage/student/" . $fileName;
             Storage::putFileAs("public/student", $file, $fileName);
             $student->update(['avater' => $url]);
         }
 
-        return redirect()->route('student.index');
+        return redirect()->route('students.index');
     }
 
     /**

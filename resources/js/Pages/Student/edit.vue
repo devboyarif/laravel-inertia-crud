@@ -23,8 +23,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Avater</label>
-                                <input class="form-control" type="file" @input="form.avatar = $event.target.files[0]" :class="{'is-invalid':form.errors.avater}"/>
-                                <span v-if="form.errors.avater" class="invalid-feedback">{{ form.errors.avater }}</span>
+                                <input class="form-control" type="file" @input="form.avatar = $event.target.files[0]" :class="{'is-invalid':form.errors.avatar}"/>
+                                <span v-if="form.errors.avatar" class="invalid-feedback">{{ form.errors.avater }}</span>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
@@ -57,7 +57,8 @@
                 form: this.$inertia.form({
                     name: this.student.name,
                     email: this.student.email,
-                    avater: null,
+                    avatar: null,
+                    _method: 'PUT'
                 }),
 
                 id: this.student.id,
@@ -65,7 +66,8 @@
         },
         methods:{
             updateData(){
-                this.form.put(route('students.update',this.id),{
+                console.log(this.form);
+                this.form.post(route('students.update',this.id),{
                     onSuccess: (page) => {alert('Student Updated')},
                 })
             }

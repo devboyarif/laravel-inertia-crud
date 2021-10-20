@@ -13,7 +13,7 @@ InertiaProgress.init()
 // Mixins
 Vue.mixin({
     methods: {
-        route: window.route
+        route: window.route,
     },
 })
 
