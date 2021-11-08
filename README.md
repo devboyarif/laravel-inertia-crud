@@ -1,4 +1,4 @@
-# Simple CRUD APP with Laravel Vuejs SPA
+# Simple CRUD APP with Laravel Vuejs (Inertiajs)
 
 ## Screenshot
 ![Frontend Screenshot](public/images/demo.png)
