@@ -69,7 +69,7 @@
         },
         methods:{
             deleteStudent(id){
-                this.$inertia.delete(`/students/${id}`, {
+                this.$inertia.delete(route('students.destroy',id), {
                     onBefore: () => confirm('Are you sure you want to delete?'),
                     onSuccess: (page) => {alert('Student Deleted')},
                 })

@@ -9,3 +9,7 @@ Route::get('/', function () {
 });
 
 Route::resource('students', StudentController::class);
+
+Route::get('/test', function () {
+    return inertia('Test/test');
+});
